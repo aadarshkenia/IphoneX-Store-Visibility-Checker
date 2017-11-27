@@ -23,8 +23,11 @@ browser.get(product_url)
 #get button to check store availability
 store_availability_button_xpath = ".//*[@id='main']/store-provider/step1-modular/materializer[2]/div[2]/div/summary-builder/div/div[2]/div[3]/div/div/div/div/div/button";
 wait = WebDriverWait(browser, 10)
-store_availability_button = wait.until(EC.presence_of_element_located((By.XPATH, store_availability_button_xpath)))
+store_availability_button = wait.until(EC.element_to_be_clickable((By.XPATH, store_availability_button_xpath)))
 logger.debug("Store availability check element found with text: " + store_availability_button.text)
+
+#perform button click.
+webdriver.ActionChains(browser).move_to_element(store_availability_button).click().perform()
 
 #quit gracefully
 logger.debug("Closing browser !!")
